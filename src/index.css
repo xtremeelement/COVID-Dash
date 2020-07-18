@@ -6,15 +6,31 @@ body {
   background-color: white;
 }
 .test {
-  width: 80%;
-  height: 50vh;
-  background-image: url("./imgs/covid.jpeg"),
-    linear-gradient(to bottom, #adb2b6, #abaeb3);
-  background-size: 100%;
+  width: 100%;
+  height: 40vh;
+  background-color: white;
+  background-image: url("./imgs/covid.jpeg");
+  background-size: auto;
   background-repeat: no-repeat;
+  background-position: bottom;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.world {
+  margin-top: 15px;
+}
+
+.cardStuff {
+  width: 300px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.latestData {
+  text-align: center;
+  margin-top: 20px;
 }

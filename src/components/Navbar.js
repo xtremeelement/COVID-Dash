@@ -8,7 +8,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
 const useStyles = makeStyles({
   root: {
-    width: "80%",
+    width: "100%",
     position: "absolute",
     bottom: 0,
     backgroundColor: "white",

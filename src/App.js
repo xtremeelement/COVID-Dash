@@ -9,6 +9,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Dashboard} />
+          <Route exact path="/states" component={Dashboard} />
+          <Route exact path="/news" component={Dashboard} />
         </Switch>
       </Router>
     </div>

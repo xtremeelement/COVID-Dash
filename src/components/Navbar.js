@@ -11,6 +11,8 @@ const useStyles = makeStyles({
     width: "80%",
     position: "absolute",
     bottom: 0,
+    backgroundColor: "white",
+    fill: "white",
   },
 });
 
@@ -27,9 +29,25 @@ export default function Navbar() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Recents" icon={<HealingIcon />} />
-      <BottomNavigationAction label="Favorites" icon={<LocalHospitalIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<FavoriteBorderIcon />} />
+      <BottomNavigationAction
+        href="/"
+        link="/test"
+        label="USA"
+        icon={<HealingIcon style={{ fill: "black" }} />}
+        style={{ color: "black" }}
+      />
+      <BottomNavigationAction
+        href="/states"
+        label="States"
+        icon={<LocalHospitalIcon style={{ fill: "black" }} />}
+        style={{ color: "black" }}
+      />
+      <BottomNavigationAction
+        href="/news"
+        label="News"
+        icon={<FavoriteBorderIcon style={{ fill: "black" }} />}
+        style={{ color: "black" }}
+      />
     </BottomNavigation>
   );
 }

@@ -27,8 +27,8 @@ export default function Dashboard() {
       <Grid container spacing={1}>
         <Grid item xs={12} justify="center" className="test">
           <h4 className="banner">
-            <EqualizerIcon />
-            COVID Tracker
+            <EqualizerIcon fontSize="inherit" />
+            COVID Tracker USA
           </h4>
         </Grid>
         <Grid item xs={12} justify="center">
@@ -40,6 +40,12 @@ export default function Dashboard() {
         <Grid item xs={12} justify="center">
           <Chart />
         </Grid>
+        <p className="footer">
+          This site was created and maintained by{" "}
+          <a href="http://brandondownhour.com" target="_blank">
+            Brandon Downhour
+          </a>
+        </p>
       </Grid>
     </div>
   );

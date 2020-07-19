@@ -7,18 +7,48 @@ body {
 }
 .test {
   width: 100%;
-  height: 30vh;
+  height: 42vh;
   background-color: white;
   background-image: url("./imgs/covid.jpeg");
-  background-size: auto;
+  background-size: 40%;
+  background-attachment: fixed;
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: top;
+  background-position-y: bottom 70%;
+}
+
+@media only screen and (max-width: 400px) {
+  .test {
+    height: 20vh;
+    background-size: 80%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .test {
+    height: 20vh;
+    background-size: 90%;
+  }
+}
+@media only screen and (max-width: 770px) {
+  .test {
+    height: 30vh;
+  }
 }
 
 .world {
   margin-top: 15px;
-  border-top: 5px solid rgba(254, 178, 126, 0.5);
+  border-top: 5px solid rgba(168, 42, 42, 0.5);
   background-color: #807e7f;
+}
+.banner {
+  text-align: center;
+  line-height: 90px;
+  margin: 0 auto;
+  margin-top: 150px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 4rem;
+  width: 60%;
 }
 
 .cardStuff {
@@ -48,10 +78,10 @@ body {
   width: "100%";
   position: "absolute";
   top: 0;
-
-  background-color: "white";
-  fill: "white";
+  fill: "black";
+  background-color: black;
 }
+
 .lastUpdate {
   color: white;
   text-align: center;

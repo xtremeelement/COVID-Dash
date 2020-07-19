@@ -91,14 +91,14 @@ export default function Snapshot() {
             </Card>
           </Grid>
         </Grid>
-        <Grid>
+        {/* <Grid>
           <Grid item m={12} justify="center">
             <Typography variant="h5" className="lastUpdate">
               <p>{displayDate ? displayDate : "loading"}</p>
               <p>Data provdied through the COVID tracking project.</p>
             </Typography>
           </Grid>
-        </Grid>
+        </Grid> */}
       </div>
     );
   }

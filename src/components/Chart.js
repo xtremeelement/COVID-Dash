@@ -10,6 +10,7 @@ import { CardHeader } from "@material-ui/core";
 
 export default function Cart() {
   let [data, setData] = useState([]);
+  let [states, setStates] = useState([]);
   let [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,6 +18,11 @@ export default function Cart() {
       setData(res.data.reverse().slice(50));
       setLoading(false);
     });
+    axios
+      .get("https://covidtracking.com/api/v1/states/current.json")
+      .then((res) => {
+        setStates(res.data);
+      });
   }, []);
 
   if (loading) {
@@ -24,7 +30,7 @@ export default function Cart() {
       <Card>
         <CardHeader title="Loading" />
         <CardContent>
-          <Typography variant="h5"></Typography>
+          <Typography variant="h5">Loading Data...</Typography>
         </CardContent>
       </Card>
     );
@@ -36,8 +42,24 @@ export default function Cart() {
     }
 
     return (
-      <Grid className="usaChart" justify="center">
-        <Grid containeritem m={6}>
+      <Grid container className="usaChart" justify="center">
+        <Grid item md={8}>
+          <Line
+            data={{
+              labels: data.map(({ date }) => date),
+              datasets: [
+                {
+                  data: data.map((data) => data.positive),
+                  label: "Total Cases",
+                  borderColor: "blue",
+                  backgroundColor: "rgba(0, 0, 255, .7)",
+                  fill: true,
+                },
+              ],
+            }}
+          />
+        </Grid>
+        <Grid item md={5}>
           <Line
             data={{
               labels: data.map(({ date }) => date),
@@ -60,23 +82,8 @@ export default function Cart() {
             }}
           />
         </Grid>
-        <Grid item m={6}>
-          <Line
-            data={{
-              labels: data.map(({ date }) => date),
-              datasets: [
-                {
-                  data: data.map((data) => data.positive),
-                  label: "Total Cases",
-                  borderColor: "blue",
-                  backgroundColor: "rgba(0, 0, 255, .7)",
-                  fill: true,
-                },
-              ],
-            }}
-          />
-        </Grid>
-        <Grid item m={12}>
+
+        <Grid item md={5}>
           <Line
             data={{
               labels: data.map(({ date }) => date),
@@ -94,6 +101,36 @@ export default function Cart() {
                   borderColor: "orange",
                   backgroundColor: "rgba(255, 165, 0, .7)",
                   fill: true,
+                },
+              ],
+            }}
+          />
+        </Grid>
+        <Grid item md={6}>
+          <Bar
+            data={{
+              labels: states.map(({ state }) => state),
+              datasets: [
+                {
+                  data: states.map((data) => data.positive),
+                  label: "States Total Infected",
+                  borderColor: "blue",
+                  backgroundColor: "blue",
+                },
+              ],
+            }}
+          />
+        </Grid>
+        <Grid item md={6}>
+          <Bar
+            data={{
+              labels: states.map(({ state }) => state),
+              datasets: [
+                {
+                  data: states.map((data) => data.death),
+                  label: "States Total Deaths",
+                  borderColor: "red",
+                  backgroundColor: "red",
                 },
               ],
             }}

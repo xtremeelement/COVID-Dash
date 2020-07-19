@@ -5,6 +5,7 @@ import Snapshot from "../components/Snapshot";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 import { makeStyles } from "@material-ui/core/styles";
+import EqualizerIcon from "@material-ui/icons/Equalizer";
 
 // const useStyles = makeStyles({
 //   root: {
@@ -24,17 +25,21 @@ export default function Dashboard() {
   return (
     <div>
       <Grid container spacing={1}>
-        <Grid container item xs={12} justify="center" className="test"></Grid>
-        <Grid container item xs={12} justify="center">
-          <Navbar />
+        <Grid item xs={12} justify="center" className="test">
+          <h4 className="banner">
+            <EqualizerIcon />
+            COVID Tracker
+          </h4>
         </Grid>
-        <Grid container item xs={12} justify="center" className="world">
+        <Grid item xs={12} justify="center">
+          <Navbar className="navbar" />
+        </Grid>
+        <Grid item xs={12} justify="center" className="world">
           <Snapshot />
         </Grid>
-        <Grid container item xs={12} justify="center">
+        <Grid item xs={12} justify="center">
           <Chart />
         </Grid>
-        <Grid container item xs={12} justify="center"></Grid>
       </Grid>
     </div>
   );

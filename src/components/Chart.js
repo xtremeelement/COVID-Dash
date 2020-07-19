@@ -46,7 +46,7 @@ export default function Cart() {
                   data: data.map((data) => data.death),
                   label: "Total Deaths",
                   borderColor: "red",
-                  backgroundColor: "rgba(255, 0, 0, .7)",
+                  backgroundColor: "rgba(255, 0, 0, .9)",
                   fill: true,
                 },
                 {

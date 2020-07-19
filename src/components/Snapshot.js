@@ -48,7 +48,7 @@ export default function Snapshot() {
           <Grid item m={3}>
             <Card className="cardStuff">
               <CardHeader title="TOTAL DEATHS" />
-              <CardContent>
+              <CardContent className="totalDeaths">
                 <Typography variant="h5">
                   <CountUp
                     start={1}
@@ -63,7 +63,7 @@ export default function Snapshot() {
           <Grid item m={3}>
             <Card className="cardStuff">
               <CardHeader title="TOTAL CASES" />
-              <CardContent justify="center">
+              <CardContent className="totalCases">
                 <Typography variant="h5">
                   <CountUp
                     start={1}
@@ -78,7 +78,7 @@ export default function Snapshot() {
           <Grid item m={3}>
             <Card className="cardStuff">
               <CardHeader title="TOTAL HOSPITALIZED" />
-              <CardContent>
+              <CardContent className="totalHospital">
                 <Typography variant="h5">
                   <CountUp
                     start={1}
@@ -92,15 +92,11 @@ export default function Snapshot() {
           </Grid>
         </Grid>
         <Grid>
-          <Grid item m={12}>
-            <Card className="latestData" justify="center">
-              <CardHeader title="Latest Data" />
-              <CardContent>
-                <Typography variant="h5">
-                  <p>{displayDate ? displayDate : "loading"}</p>
-                </Typography>
-              </CardContent>
-            </Card>
+          <Grid item m={12} justify="center">
+            <Typography variant="h5" className="lastUpdate">
+              <p>{displayDate ? displayDate : "loading"}</p>
+              <p>Data provdied through the COVID tracking project.</p>
+            </Typography>
           </Grid>
         </Grid>
       </div>

@@ -7,7 +7,7 @@ body {
 }
 .test {
   width: 100%;
-  height: 40vh;
+  height: 30vh;
   background-color: white;
   background-image: url("./imgs/covid.jpeg");
   background-size: auto;
@@ -15,22 +15,43 @@ body {
   background-position: bottom;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 .world {
   margin-top: 15px;
+  border-top: 5px solid rgba(254, 178, 126, 0.5);
+  background-color: #807e7f;
 }
 
 .cardStuff {
   width: 300px;
-  margin-top: 20px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
 .latestData {
   text-align: center;
-  margin-top: 20px;
+}
+
+.totalDeaths {
+  border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+}
+.totalCases {
+  border-bottom: 10px solid rgba(0, 255, 0, 0.5);
+}
+.totalHospital {
+  border-bottom: 10px solid rgba(0, 0, 255, 0.5);
+}
+
+.usaChart {
+  width: 70%;
+}
+.navbar {
+  width: "100%";
+  position: "absolute";
+  bottom: 0;
+  background-color: "white";
+  fill: "white";
+}
+.lastUpdate {
+  color: white;
+  text-align: center;
 }

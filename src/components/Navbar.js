@@ -27,7 +27,7 @@ export default function Navbar() {
         setValue(newValue);
       }}
       showLabels
-      className={classes.root}
+      className="navbar"
     >
       <BottomNavigationAction
         href="/"

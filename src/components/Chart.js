@@ -36,14 +36,14 @@ export default function Cart() {
     );
   } else {
     try {
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
 
     return (
-      <Grid container className="usaChart" justify="center">
-        <Grid item md={8}>
+      <Grid container className="usaChart container" justify="center">
+        <h5>Toggle legend to see data</h5>
+        <Grid item md={5}>
           <Line
             data={{
               labels: data.map(({ date }) => date),
@@ -54,6 +54,21 @@ export default function Cart() {
                   borderColor: "blue",
                   backgroundColor: "rgba(0, 0, 255, .7)",
                   fill: true,
+                },
+              ],
+            }}
+          />
+        </Grid>
+        <Grid item md={5}>
+          <Line
+            data={{
+              labels: data.map(({ date }) => date),
+              datasets: [
+                {
+                  data: data.map((data) => data.positiveIncrease),
+                  label: "New Daily Cases",
+                  borderColor: "red",
+                  backgroundColor: "purple",
                 },
               ],
             }}
@@ -101,36 +116,6 @@ export default function Cart() {
                   borderColor: "orange",
                   backgroundColor: "rgba(255, 165, 0, .7)",
                   fill: true,
-                },
-              ],
-            }}
-          />
-        </Grid>
-        <Grid item md={6}>
-          <Bar
-            data={{
-              labels: states.map(({ state }) => state),
-              datasets: [
-                {
-                  data: states.map((data) => data.positive),
-                  label: "States Total Infected",
-                  borderColor: "blue",
-                  backgroundColor: "blue",
-                },
-              ],
-            }}
-          />
-        </Grid>
-        <Grid item md={6}>
-          <Bar
-            data={{
-              labels: states.map(({ state }) => state),
-              datasets: [
-                {
-                  data: states.map((data) => data.death),
-                  label: "States Total Deaths",
-                  borderColor: "red",
-                  backgroundColor: "red",
                 },
               ],
             }}

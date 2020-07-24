@@ -18,11 +18,6 @@ export default function Cart() {
       setData(res.data.reverse().slice(50));
       setLoading(false);
     });
-    axios
-      .get("https://covidtracking.com/api/v1/states/current.json")
-      .then((res) => {
-        setStates(res.data);
-      });
   }, []);
 
   if (loading) {

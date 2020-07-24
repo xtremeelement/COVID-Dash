@@ -14,6 +14,12 @@ import Select from "@material-ui/core/Select";
 import axios from "axios";
 import { Line, Bar } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
+import Stateshot from "../components/Stateshot";
+import CountUp from "react-countup";
+import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/Card";
+import { CardHeader } from "@material-ui/core";
 
 // const useStyles = makeStyles((theme) => ({
 //   formControl: {
@@ -30,15 +36,23 @@ export default function Singlestate(props) {
   //   const classes = useStyles();
 
   let [states, setStates] = useState([]);
+  let [allStates, setallStates] = useState([]);
   let [loading, setLoading] = useState(true);
+  let [data, setData] = useState([]);
   let state = props.match.params.state;
-  console.log(state);
+  state = state.toLowerCase();
+
   useEffect(() => {
+    axios
+      .get(`https://covidtracking.com/api/v1/states/${state}/daily.json`)
+      .then((res) => {
+        setStates(res.data.reverse());
+        setLoading(false);
+      });
     axios
       .get("https://covidtracking.com/api/v1/states/current.json")
       .then((res) => {
-        setStates(res.data);
-        setLoading(false);
+        setallStates(res.data);
       });
   }, []);
 
@@ -77,6 +91,9 @@ export default function Singlestate(props) {
           <Grid item xs={12} justify="center">
             <Navbar className="navbar" />
           </Grid>
+          <Grid item xs={12}>
+            <Stateshot currentState={state} />
+          </Grid>
           <Grid container item xs={12} justify="center">
             <FormControl className="dropDown" justify="center">
               <InputLabel id="demo-simple-select-helper-label">
@@ -88,7 +105,7 @@ export default function Singlestate(props) {
                 value="hello"
                 onChange={handleChange}
               >
-                {states.map((state) => {
+                {allStates.map((state) => {
                   return <MenuItem value={state.state}>{state.state}</MenuItem>;
                 })}
               </Select>
@@ -98,27 +115,85 @@ export default function Singlestate(props) {
           <Grid container spacing={1} justify="center">
             <Grid item xs={10}>
               <h5>Toggle legend to see data.</h5>
-              <Bar
+              <Line
                 data={{
-                  labels: states.map(({ state }) => state),
+                  labels: states.map(({ date }) => date),
                   datasets: [
                     {
-                      data: states.map((state) => state.positive),
-                      label: "Total Cases",
+                      data: states.map((data) => data.positiveIncrease),
+                      label: "Daily Cases",
                       borderColor: "blue",
-                      backgroundColor: "blue",
+                      backgroundColor: "rgba(0, 0, 255, .7)",
+                      fill: true,
                     },
                     {
-                      data: states.map((state) => state.death),
+                      data: states.map((data) => data.deathIncrease),
+                      label: "Daily Deaths",
+                      borderColor: "red",
+                      backgroundColor: "red",
+                      fill: true,
+                    },
+                    {
+                      data: states.map((data) => data.hospitalizedIncrease),
+                      label: "Daily Hospitalizations",
+                      borderColor: "green",
+                      backgroundColor: "green",
+                      fill: true,
+                    },
+                  ],
+                }}
+              />
+            </Grid>
+            <Grid item xs={10}>
+              <h5>Toggle legend to see data.</h5>
+              <Line
+                data={{
+                  labels: states.map(({ date }) => date),
+                  datasets: [
+                    {
+                      data: states
+                        .map(
+                          (data) =>
+                            (Math.round(data.positive).toFixed(2) /
+                              Math.round(data.negative).toFixed(2)) *
+                            100
+                        )
+                        .reverse(),
+                      label: "Precentage Positive",
+                      borderColor: "orange",
+                      backgroundColor: "rgba(255, 165, 0, .7)",
+                      fill: true,
+                    },
+                  ],
+                }}
+              />
+            </Grid>
+            <Grid item xs={10}>
+              <h5>Toggle legend to see data.</h5>
+              <Line
+                data={{
+                  labels: states.map(({ date }) => date),
+                  datasets: [
+                    {
+                      data: states.map((data) => data.positive),
+                      label: "Total Cases",
+                      borderColor: "blue",
+                      backgroundColor: "rgba(0, 0, 255, .7)",
+                      fill: true,
+                    },
+                    {
+                      data: states.map((data) => data.death),
                       label: "Total Deaths",
                       borderColor: "red",
                       backgroundColor: "red",
+                      fill: true,
                     },
                     {
-                      data: states.map((state) => state.hospitalizedCurrently),
-                      label: "Total Cases",
+                      data: states.map((data) => data.hospitalized),
+                      label: "Total Hospitalizations",
                       borderColor: "green",
                       backgroundColor: "green",
+                      fill: true,
                     },
                   ],
                 }}

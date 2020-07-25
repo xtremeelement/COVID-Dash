@@ -37,7 +37,10 @@ export default function Cart() {
 
     return (
       <Grid container className="usaChart container" justify="center">
-        <h5>Toggle legend to see data</h5>
+        <Grid item xs={12} justify="center">
+          <h5>Toggle legend to see data</h5>
+        </Grid>
+
         <Grid item md={5}>
           <Line
             data={{
